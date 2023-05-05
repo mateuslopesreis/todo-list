@@ -1,6 +1,7 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { AppBar, Button, Container, Grid, TextField, Toolbar, Typography, useTheme } from '@mui/material';
+import { AppBar, Badge, Button, Container, Grid, TextField, Toolbar, Typography, colors, useTheme } from '@mui/material';
+import { PlusCircle , CheckFat} from '@phosphor-icons/react';
 
 const darkTheme = createTheme({
   palette: {
@@ -23,20 +24,53 @@ function App(){
          '@media all': { 
           minHeight: 200,
          },
-      }}>
-        <Typography variant='h5' component="h1">todo</Typography>
+      }}
+      >
+        <Typography variant='h5' component="h1" sx={{
+          display:'flex',
+          alignItem:'center',
+          gap:theme.spacing(2),
+          color:theme.palette.primary.light
+        }}>
+         <CheckFat size={32} weight="fill"/> Lista de Tarefas</Typography>
       </Toolbar>
     </AppBar>
 
       <main>
-        <Container>
-          <Grid container spacing={theme.spacing(0.5)}>
+        <Container sx={{
+          position: 'relative',
+          paddingTop:'50px'
+        }}>
+          <Grid container spacing={theme.spacing(0.5)} sx={{
+            position: 'absolute',
+            top: '-27px'
+          }}>
               <Grid item xl={10} sm={12}>
-                  <TextField name='task' fullWidth/>
+                  <TextField variant='outlined' name='task' fullWidth  sx={{
+                    backgroundColor:colors.grey[800],
+
+                  }}/>
               </Grid>
               <Grid item xl={2} sm={12}>
-                  <Button variant='contained' fullWidth>Criar</Button>
+                  <Button variant='contained' fullWidth sx={{
+                    height:'100%'
+                  }}><span>Criar</span><PlusCircle size={32}/>
+                  </Button>
               </Grid>
+
+              <Grid container spacing={theme.spacing(1)}>
+                  <Grid item>
+                    <Typography variant='caption' sx={{
+                      display:'flex',
+                      alignItems:'center',
+                      gap:theme.spacing(1)
+                    }}>
+                      <span>Tarefas criadas</span>
+                     <Badge color='primary' badgeContent={0} showZero></Badge>
+                    </Typography>
+                  </Grid>
+              </Grid>
+
           </Grid>
           </Container>
       </main>
