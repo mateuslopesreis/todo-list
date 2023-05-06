@@ -1,7 +1,7 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { AppBar, Badge, Button, Container, Grid, TextField, Toolbar, Typography, colors, useTheme } from '@mui/material';
-import { PlusCircle , CheckFat} from '@phosphor-icons/react';
+import { AppBar, Badge, Button, Card, Container, Grid, TextField, Toolbar, Typography, colors, useTheme } from '@mui/material';
+import { PlusCircle , CheckFat, ClipboardText} from '@phosphor-icons/react';
 
 const darkTheme = createTheme({
   palette: {
@@ -59,15 +59,55 @@ function App(){
               </Grid>
 
               <Grid container spacing={theme.spacing(1)}>
-                  <Grid item>
-                    <Typography variant='caption' sx={{
-                      display:'flex',
-                      alignItems:'center',
-                      gap:theme.spacing(1)
-                    }}>
+                  <Grid item sx={{
+                    display:'flex',
+                    alignItems:'center',
+                    justifyContent:'space-between',
+                    padding:'20px',
+                    width:'100%',
+                    gap:theme.spacing(1),
+                    marginTop:'50px'
+                     
+                  }}>
+                    <Typography >
+                  
                       <span>Tarefas criadas</span>
                      <Badge color='primary' badgeContent={0} showZero></Badge>
+
                     </Typography>
+
+                    <Typography>
+                    <span>Concluidas</span>
+                     <Badge color='primary' badgeContent={0} showZero></Badge>
+                     </Typography>
+                    
+                  </Grid>
+
+                  <Grid item sx={{
+                    width:'100%',
+                    height:'100%',
+                    borderTop:'1px solid',
+                    borderRadius:'8px'
+                  }}>
+                       <Card sx={{ width: '100%',
+                      display:'flex',
+                      alignItems:'center',
+                      flexDirection:'column',
+                      padding:'30px',
+                       }}>
+                       <ClipboardText size={32} weight="fill" />
+
+                       <Typography sx={{
+                        fontWeight:'bold',
+                       }}>
+                      <span>Você ainda não tem tarefas cadastradas</span>    
+                    </Typography>
+
+                    <Typography>
+                      <span>Crie tarefas e organize seus itens a fazer</span>    
+                    </Typography>
+
+                       </Card>
                   </Grid>
               </Grid>
 
