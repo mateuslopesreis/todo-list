@@ -73,6 +73,7 @@ function App(){
                   
                       <span>Tarefas criadas</span>
                      <Badge sx={{
+                      
                       paddingLeft:'15px'
                      }} color='primary' badgeContent={0} showZero></Badge>
 
