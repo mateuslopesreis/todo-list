@@ -72,13 +72,17 @@ function App(){
                     <Typography >
                   
                       <span>Tarefas criadas</span>
-                     <Badge color='primary' badgeContent={0} showZero></Badge>
+                     <Badge sx={{
+                      paddingLeft:'15px'
+                     }} color='primary' badgeContent={0} showZero></Badge>
 
                     </Typography>
 
                     <Typography>
                     <span>Concluidas</span>
-                     <Badge color='primary' badgeContent={0} showZero></Badge>
+                     <Badge sx={{
+                      paddingLeft:'15px'
+                     }}  color='primary' badgeContent={0} showZero></Badge>
                      </Typography>
                     
                   </Grid>
