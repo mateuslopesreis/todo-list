@@ -2,6 +2,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AppBar, Badge, Button, Card, Container, Grid, TextField, Toolbar, Typography, colors, useTheme } from '@mui/material';
 import { PlusCircle , CheckFat, ClipboardText} from '@phosphor-icons/react';
+import { useEffect, useState } from 'react';
+import { Task } from './types';
 
 const darkTheme = createTheme({
   palette: {
@@ -11,6 +13,12 @@ const darkTheme = createTheme({
 
 function App(){
   const theme = useTheme()
+  const [tasks,setTasks] = useState<Task[]>()
+
+  useEffect(()=>{
+
+  },[])
+  
   return (
     <ThemeProvider theme={darkTheme}>
     <CssBaseline />
