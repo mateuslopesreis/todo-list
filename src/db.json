@@ -1,13 +1,15 @@
 {
-    "todos":[
+    "tasks":[
         {
+            "id":1,
             "description":"Tarefa 1",
             "done":false
         },
 
         {
+            "id":2,
             "description":"Tarefa 2",
-            "done":false
+            "done":true
         }
     ]
 }
