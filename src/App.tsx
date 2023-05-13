@@ -1,15 +1,21 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AppBar, Badge, Button, Card, Container, Grid, TextField, Toolbar, Typography, colors, useTheme } from '@mui/material';
-import { PlusCircle , CheckFat, ClipboardText} from '@phosphor-icons/react';
+import { PlusCircle , CheckFat, ClipboardText, Trash} from '@phosphor-icons/react';
 import { useEffect, useState } from 'react';
 import { Task } from './types';
+import Checkbox from '@mui/material/Checkbox';
+
 
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
   },
 });
+
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+
 
 function App(){
   const theme = useTheme()
@@ -83,7 +89,7 @@ function App(){
                      <Badge sx={{
                       
                       paddingLeft:'15px'
-                     }} color='primary' badgeContent={0} showZero></Badge>
+                     }} color='primary' badgeContent={5} showZero></Badge>
 
                     </Typography>
 
@@ -91,7 +97,7 @@ function App(){
                     <span>Concluidas</span>
                      <Badge sx={{
                       paddingLeft:'15px'
-                     }}  color='primary' badgeContent={0} showZero></Badge>
+                     }}  color='primary' badgeContent={2 +'de'+ 5} showZero></Badge>
                      </Typography>
                     
                   </Grid>
@@ -102,25 +108,33 @@ function App(){
                     borderTop:'1px solid',
                     borderRadius:'8px'
                   }}>
-                       <Card sx={{ width: '100%',
-                      display:'flex',
-                      alignItems:'center',
-                      flexDirection:'column',
-                      padding:'30px',
+                      
+
+                      <Grid item xl={12} sx={{
+                        height:'50%',
+                        backgroundColor:colors.grey[800],
+                        borderRadius:'8px',
+                        display:'flex',
+                        alignItems:'center',
+                        justifyContent:'space-between'
                        }}>
-                       <ClipboardText size={32} weight="fill" />
+                        <Checkbox {...label} />
 
-                       <Typography sx={{
-                        fontWeight:'bold',
-                       }}>
-                      <span>Você ainda não tem tarefas cadastradas</span>    
-                    </Typography>
+                        <Typography>
+                    <span>Ouvir todos os albuns do metallica e nirvana</span>
+                    
+                     </Typography>
 
-                    <Typography>
-                      <span>Crie tarefas e organize seus itens a fazer</span>    
-                    </Typography>
+                     <Checkbox {...label}
+        
+        icon={<Trash size={25} weight="fill" />
+      }
+      checkedIcon={<Trash size={25} weight="fill"/>}
+      />
+                       </Grid>
 
-                       </Card>
+
+                     
                   </Grid>
               </Grid>
 
