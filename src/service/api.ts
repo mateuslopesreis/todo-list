@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Task } from "../types";
+import { TypeTask } from "../types";
 
 const api = axios.create(({
     baseURL: 'http//localhost:3000',
@@ -17,14 +17,14 @@ export async function getById(id:number){
     return tasks.data
 }
 
-export async function save(task:Task){
+export async function save(task:TypeTask){
     const response = await api.post(`tasks`,{
         ...task
     })
     return response.data
 }
 
-export async function update(task:Task){
+export async function update(task:TypeTask){
     const response = await api.put(`tasks/${task.id}`,{
         ...task
     })

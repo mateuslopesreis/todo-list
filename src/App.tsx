@@ -3,8 +3,11 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { AppBar, Badge, Button, Card, Container, Grid, TextField, Toolbar, Typography, colors, useTheme } from '@mui/material';
 import { PlusCircle , CheckFat, ClipboardText, Trash} from '@phosphor-icons/react';
 import { useEffect, useState } from 'react';
-import { Task } from './types';
-import Checkbox from '@mui/material/Checkbox';
+import { TypeTask } from './types';
+
+import { get } from './service/api';
+import { Tarefa } from './Tarefa/descricaoTarefa';
+
 
 
 const darkTheme = createTheme({
@@ -13,15 +16,19 @@ const darkTheme = createTheme({
   },
 });
 
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
 
 
 
 function App(){
   const theme = useTheme()
-  const [tasks,setTasks] = useState<Task[]>()
+  const [tasks,setTasks] = useState<TypeTask[]>()
 
   useEffect(()=>{
+    async function listarTarefas(){
+      setTasks(await get())
+  }
+  listarTarefas()
 
   },[])
   
@@ -110,28 +117,9 @@ function App(){
                   }}>
                       
 
-                      <Grid item xl={12} sx={{
-                        height:'50%',
-                        backgroundColor:colors.grey[800],
-                        borderRadius:'8px',
-                        display:'flex',
-                        alignItems:'center',
-                        justifyContent:'space-between'
-                       }}>
-                        <Checkbox {...label} />
-
-                        <Typography>
-                    <span>Ouvir todos os albuns do metallica e nirvana</span>
                     
-                     </Typography>
-
-                     <Checkbox {...label}
-        
-        icon={<Trash size={25} weight="fill" />
-      }
-      checkedIcon={<Trash size={25} weight="fill"/>}
-      />
-                       </Grid>
+                    <Tarefa/>
+                       
 
 
                      
