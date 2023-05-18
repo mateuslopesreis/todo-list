@@ -37,14 +37,14 @@ function App(){
 
   },[])
 
-  const enviarTarefa = () => {
+  /* const enviarTarefa = () => {
     const tarefaFazer = {
       "description ": search,
       "done": "false"
       
     }
     
-  }
+  } */
 
 
 
@@ -90,7 +90,7 @@ function App(){
                   }}/>
               </Grid>
               <Grid item xl={2} sm={12}>
-                  <Button variant='contained' onClick={enviarTarefa} fullWidth sx={{
+                  <Button variant='contained' /* onClick={enviarTarefa} */ fullWidth sx={{
                     height:'100%'
                   }}><span>Criar</span><PlusCircle size={32}/>
                   </Button>
@@ -135,16 +135,16 @@ function App(){
                   }}>
                     <TarefasNovas>
                       
-{/* {
+ {
 
                       tasks.map(taski => (
-                      <Tarefa contactData={taski} />
+                       <Tarefa taskiData={taski} />
                       
                       ))
-        */}          
+                      }          
 
 
-                  <Tarefa descricao={search} />
+                {/*   <Tarefa descricao={search} /> */}
 
 
 </TarefasNovas>

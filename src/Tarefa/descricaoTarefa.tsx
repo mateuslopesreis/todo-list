@@ -6,18 +6,18 @@ import { TypeTask } from "../types";
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 
-/* type ContactCardProps ={
-    contactData: TypeTask
-} */
-
  type ContactCardProps ={
-    descricao: string
+    taskiData: TypeTask
 } 
 
+/*  type ContactCardProps ={
+    descricao: string
+} 
+ */
 
   
-  export function Tarefa({ descricao }: ContactCardProps) {
- /*    const {description} = contactData */
+  export function Tarefa({ taskiData }: ContactCardProps) {
+     const {description, done} = taskiData 
   
     return(
         
@@ -32,7 +32,7 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     <Checkbox {...label} />
 
     <Typography>
-<span>{descricao}</span>
+<span>{description}{done}</span>
 
  </Typography>
 
