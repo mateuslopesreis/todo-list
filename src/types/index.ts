@@ -1,5 +1,5 @@
 export type TypeTask={
-    id?: number,
+    id: number,
     description:string,
     done:boolean
 }

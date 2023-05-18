@@ -1,15 +1,23 @@
 import { Grid, Typography, colors } from "@mui/material";
 import { Trash } from "@phosphor-icons/react";
 import Checkbox from '@mui/material/Checkbox';
+import { TypeTask } from "../types";
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 
-type TextoTarefa = {
-    descricao?: string
-  }
+/* type ContactCardProps ={
+    contactData: TypeTask
+} */
+
+ type ContactCardProps ={
+    descricao: string
+} 
+
+
   
-  export function Tarefa({ descricao }: TextoTarefa) {
+  export function Tarefa({ descricao }: ContactCardProps) {
+ /*    const {description} = contactData */
   
     return(
         

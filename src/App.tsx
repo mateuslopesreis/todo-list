@@ -2,11 +2,13 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AppBar, Badge, Button, Card, Container, Grid, TextField, Toolbar, Typography, colors, useTheme } from '@mui/material';
 import { PlusCircle , CheckFat, ClipboardText, Trash} from '@phosphor-icons/react';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { TypeTask } from './types';
 
-import { get } from './service/api';
+import { get, save } from './service/api';
 import { Tarefa } from './Tarefa/descricaoTarefa';
+import { Task } from '@mui/icons-material';
+import { TarefasNovas } from './TarefasNovas';
 
 
 
@@ -20,9 +22,12 @@ const darkTheme = createTheme({
 
 
 
+
 function App(){
   const theme = useTheme()
-  const [tasks,setTasks] = useState<TypeTask[]>()
+  const [search, setSearch] = useState<string>('');
+  const [tasks,setTasks] = useState<TypeTask[]>([])
+  
 
   useEffect(()=>{
     async function listarTarefas(){
@@ -31,6 +36,18 @@ function App(){
   listarTarefas()
 
   },[])
+
+  const enviarTarefa = () => {
+    const tarefaFazer = {
+      "description ": search,
+      "done": "false"
+      
+    }
+    
+  }
+
+
+
   
   return (
     <ThemeProvider theme={darkTheme}>
@@ -67,13 +84,13 @@ function App(){
             top: '-27px'
           }}>
               <Grid item xl={10} sm={12}>
-                  <TextField variant='outlined' name='task' fullWidth  sx={{
+                  <TextField variant='outlined' name='task'  onChange={(e: ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)} fullWidth  sx={{
                     backgroundColor:colors.grey[800],
 
                   }}/>
               </Grid>
               <Grid item xl={2} sm={12}>
-                  <Button variant='contained' fullWidth sx={{
+                  <Button variant='contained' onClick={enviarTarefa} fullWidth sx={{
                     height:'100%'
                   }}><span>Criar</span><PlusCircle size={32}/>
                   </Button>
@@ -113,15 +130,24 @@ function App(){
                     width:'100%',
                     height:'100%',
                     borderTop:'1px solid',
-                    borderRadius:'8px'
+                    borderRadius:'8px',
+                    color:'white'
                   }}>
+                    <TarefasNovas>
                       
+{/* {
 
-                    
-                    <Tarefa/>
-                       
+                      tasks.map(taski => (
+                      <Tarefa contactData={taski} />
+                      
+                      ))
+        */}          
 
 
+                  <Tarefa descricao={search} />
+
+
+</TarefasNovas>
                      
                   </Grid>
               </Grid>
