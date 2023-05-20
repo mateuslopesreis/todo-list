@@ -12,8 +12,18 @@
     },
     {
       "description": "tarefa 03",
-      "done": "false",
+      "done": true,
       "id": 3
+    },
+    {
+      "description": "luffy",
+      "done": false,
+      "id": 4
+    },
+    {
+      "description": "goku",
+      "done": false,
+      "id": 5
     }
   ]
 }

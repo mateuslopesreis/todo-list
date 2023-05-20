@@ -27,7 +27,9 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     borderRadius:'8px',
     display:'flex',
     alignItems:'center',
-    justifyContent:'space-between'
+    justifyContent:'space-between',
+    marginBottom:'5px',
+    padding:'5px'
    }}>
     <Checkbox {...label} />
 

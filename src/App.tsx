@@ -2,7 +2,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AppBar, Badge, Button, Card, Container, Grid, TextField, Toolbar, Typography, colors, useTheme } from '@mui/material';
 import { PlusCircle , CheckFat, ClipboardText, Trash} from '@phosphor-icons/react';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { TypeTask } from './types';
 
 import { get, save } from './service/api';
@@ -25,7 +25,10 @@ const darkTheme = createTheme({
 
 function App(){
   const theme = useTheme()
-  const [search, setSearch] = useState<string>('');
+  const [newTask, setNewTask] = useState<TypeTask>({
+    description: '',
+    done: false,
+  });
   const [tasks,setTasks] = useState<TypeTask[]>([])
   
 
@@ -37,14 +40,21 @@ function App(){
 
   },[])
 
-  /* const enviarTarefa = () => {
-    const tarefaFazer = {
-      "description ": search,
-      "done": "false"
-      
-    }
-    
-  } */
+
+  const pesquisaTarefa = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const inputElement = event.currentTarget.querySelector('input[name="task"]');
+    let description: string = inputElement?.getAttribute('value') || '';
+    let newTask:TypeTask={
+    description,
+    done:false
+}
+  save(newTask);
+  setTasks([...tasks, newTask]);
+  setNewTask({ description:'', done: false });
+  console.log(description)
+
+  };
 
 
 
@@ -75,6 +85,7 @@ function App(){
     </AppBar>
 
       <main>
+      <form onSubmit={pesquisaTarefa}>
         <Container sx={{
           position: 'relative',
           paddingTop:'50px'
@@ -83,19 +94,22 @@ function App(){
             position: 'absolute',
             top: '-27px'
           }}>
+          
               <Grid item xl={10} sm={12}>
-                  <TextField variant='outlined' name='task'  onChange={(e: ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)} fullWidth  sx={{
+              
+                  <TextField variant='outlined' type='text'  name="task" value={newTask.description} onChange={(event) => setNewTask({ ...newTask, description: event.target.value })} fullWidth  sx={{
                     backgroundColor:colors.grey[800],
 
                   }}/>
               </Grid>
               <Grid item xl={2} sm={12}>
-                  <Button variant='contained' /* onClick={enviarTarefa} */ fullWidth sx={{
+                  <Button variant='contained'  type='submit'  fullWidth sx={{
                     height:'100%'
                   }}><span>Criar</span><PlusCircle size={32}/>
                   </Button>
+               
               </Grid>
-
+              
               <Grid container spacing={theme.spacing(1)}>
                   <Grid item sx={{
                     display:'flex',
@@ -137,8 +151,8 @@ function App(){
                       
  {
 
-                      tasks.map(taski => (
-                       <Tarefa taskiData={taski} />
+                      tasks.map((taski) => (
+                       <Tarefa key={taski.id} taskiData={taski} />
                       
                       ))
                       }          
@@ -154,6 +168,7 @@ function App(){
 
           </Grid>
           </Container>
+          </form>
       </main>
 
     
