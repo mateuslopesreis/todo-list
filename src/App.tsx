@@ -9,6 +9,7 @@ import { get, save } from './service/api';
 import { Tarefa } from './Tarefa/descricaoTarefa';
 import { Task } from '@mui/icons-material';
 import { TarefasNovas } from './TarefasNovas';
+import { AlertDialog } from './Componentes/AlertDialog';
 
 
 
@@ -43,10 +44,10 @@ function App(){
 
   const pesquisaTarefa = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const inputElement = event.currentTarget.querySelector('input[name="task"]');
-    let description: string = inputElement?.getAttribute('value') || '';
+    
+    let description: string = event.currentTarget.task.value
     let newTask:TypeTask={
-    description,
+    description:description,
     done:false
 }
   save(newTask);
@@ -148,8 +149,10 @@ function App(){
                     color:'white'
                   }}>
                     <TarefasNovas>
+                   
                       
  {
+                      
 
                       tasks.map((taski) => (
                        <Tarefa key={taski.id} taskiData={taski} />

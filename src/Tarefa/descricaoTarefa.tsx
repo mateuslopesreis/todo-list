@@ -2,7 +2,8 @@ import { Grid, Typography, colors } from "@mui/material";
 import { Trash } from "@phosphor-icons/react";
 import Checkbox from '@mui/material/Checkbox';
 import { TypeTask } from "../types";
-
+import { AlertDialog } from "../Componentes/AlertDialog";
+import {useState} from 'react'
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 
@@ -17,6 +18,7 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
   
   export function Tarefa({ taskiData }: ContactCardProps) {
+     const [isShowAlert,setIsShowAlert] = useState(false)
      const {description, done} = taskiData 
   
     return(
@@ -42,8 +44,8 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 icon={<Trash size={25} weight="fill" />
 }
-checkedIcon={<Trash size={25} weight="fill"/>}/>
-
+checkedIcon={<Trash size={25}  weight="fill"/>} onClick={()=>{setIsShowAlert(true)}}/>
+    {isShowAlert? <AlertDialog open={isShowAlert}/>:''}
 </Grid>
     )
 
