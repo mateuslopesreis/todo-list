@@ -5,7 +5,7 @@ import { PlusCircle , CheckFat, ClipboardText, Trash} from '@phosphor-icons/reac
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { TypeTask } from './types';
 
-import { get, save } from './service/api';
+import { exclude, get, save } from './service/api';
 import { Tarefa } from './Tarefa/descricaoTarefa';
 import { Task } from '@mui/icons-material';
 import { TarefasNovas } from './TarefasNovas';
@@ -57,6 +57,14 @@ function App(){
 
   };
 
+  const handleDelete = async (id:any) => {
+    try {
+      await exclude(id);
+      setTasks(tasks.filter((task) => task.id !== id));
+    } catch (error) {
+      console.error('Erro ao excluir a tarefa:', error);
+    }
+  };
 
 
   
@@ -155,7 +163,7 @@ function App(){
                       
 
                       tasks.map((taski) => (
-                       <Tarefa key={taski.id} taskiData={taski} />
+                       <Tarefa key={taski.id} taskiData={taski} onDelete={() => handleDelete(taski.id)} />
                       
                       ))
                       }          
